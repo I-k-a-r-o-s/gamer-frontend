@@ -1,11 +1,10 @@
 import { createContext } from "react";
-import { useNavigate } from "react-router";
+import RawgApi from "../api/RawgApi";
 
 export const GamerContext = createContext();
 
 const GamerContextProvider = ({ children }) => {
-  const navigate = useNavigate();
-  const game = { navigate };
+  const game = {};
   return <GamerContext.Provider value={game}>{children}</GamerContext.Provider>;
 };
 
