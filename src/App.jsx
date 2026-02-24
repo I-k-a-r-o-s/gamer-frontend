@@ -1,21 +1,11 @@
 import { Toaster } from "react-hot-toast";
-import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
+import { Routes, Route } from "react-router";
 import Home from "./pages/Home";
-import Hero from "./pages/Hero";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Hero />,
-  },
-  {
-    path: "/home",
-    element: <Home />,
-  },
-]);
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Favorites from "./pages/Favorites";
 
 const App = () => {
   return (
@@ -27,7 +17,13 @@ const App = () => {
           {/* Navbar */}
           <Navbar />
           {/* Page content here */}
-          <RouterProvider router={router} />
+          <Routes>
+            <Route path="/" element={<Home />} />            
+            <Route path="*" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/favorites" element={<Favorites />} />
+          </Routes>
         </div>
         {/* Sidebar */}
         <Sidebar />

@@ -1,5 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router";
 import "./index.css";
 import App from "./App.jsx";
 import GamerContextProvider from "./context/GamerContext.jsx";
@@ -7,10 +8,12 @@ import AuthContextProvider from "./context/AuthContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthContextProvider>
-      <GamerContextProvider>
-        <App />
-      </GamerContextProvider>
-    </AuthContextProvider>
+    <BrowserRouter>
+      <AuthContextProvider>
+        <GamerContextProvider>
+          <App />
+        </GamerContextProvider>
+      </AuthContextProvider>
+    </BrowserRouter>
   </StrictMode>,
 );
