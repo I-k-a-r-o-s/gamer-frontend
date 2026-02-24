@@ -1,6 +1,13 @@
+import {
+  TbLayoutSidebarLeftExpand,
+  TbLayoutSidebarRightExpand,
+} from "react-icons/tb";
 import ThemeSelector from "./ThemeSelector";
+import { useState } from "react";
+import { Link } from "react-router";
 
 const Navbar = () => {
+  const [toggle, setToggle] = useState(false);
   return (
     <nav className="navbar w-full bg-base-300">
       <div className="navbar-start">
@@ -8,26 +15,25 @@ const Navbar = () => {
           htmlFor="my-drawer-4"
           aria-label="open sidebar"
           className="btn btn-square btn-ghost"
+          onClick={() => setToggle(!toggle)}
         >
           {/* Sidebar toggle icon */}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            strokeLinejoin="round"
-            strokeLinecap="round"
-            strokeWidth="2"
-            fill="none"
-            stroke="currentColor"
-            className="my-1.5 inline-block size-4"
-          >
-            <path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
-            <path d="M9 4v16"></path>
-            <path d="M14 10l2 2l-2 2"></path>
-          </svg>
+          {toggle ? (
+            <TbLayoutSidebarRightExpand size={20} />
+          ) : (
+            <TbLayoutSidebarLeftExpand size={20} />
+          )}
         </label>
-        <div className="px-4">Navbar Title</div>
+        <div className="px-4 hover:cursor-pointer">
+          <Link to="/" className="btn btn-ghost">
+            Gamer
+          </Link>
+        </div>
       </div>
       <div className="navbar-end">
+        <Link to="/login" className="btn btn-ghost">
+          Login
+        </Link>
         <ThemeSelector />
       </div>
     </nav>
