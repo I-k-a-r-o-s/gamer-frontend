@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import RawgApi from "../api/RawgApi";
 
 export const GamerContext = createContext();
 const GamerContextProvider = ({ children }) => {
