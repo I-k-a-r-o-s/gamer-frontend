@@ -1,10 +1,12 @@
-import { createContext} from "react";
+import { createContext } from "react";
 import AuthApi from "../api/AuthApi";
+import { useNavigate } from "react-router";
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const auth = {};
+  const navigate = useNavigate();
+  const auth = { navigate };
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
 
