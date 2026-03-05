@@ -3,11 +3,13 @@ import {
   TbLayoutSidebarRightExpand,
 } from "react-icons/tb";
 import ThemeSelector from "./ThemeSelector";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
+  const { user, logout } = useContext(AuthContext);
   return (
     <nav className="navbar w-full bg-base-300">
       <div className="navbar-start">
@@ -31,9 +33,18 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-end">
-        <Link to="/login" className="btn btn-ghost">
-          Login
-        </Link>
+        {user ? (
+          <>
+            <span className="px-4 text-sm font-semibold">{user.name}</span>
+            <button className="btn btn-ghost" onClick={logout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="btn btn-ghost">
+            Login
+          </Link>
+        )}
         <ThemeSelector />
       </div>
     </nav>
