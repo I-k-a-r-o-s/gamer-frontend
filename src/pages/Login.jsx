@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 import AuthApi from "../api/AuthApi";
 
 const Login = () => {
-const {loading, setLoading, navigate} = useContext(AuthContext);
+const {loading, setLoading, navigate, saveUser} = useContext(AuthContext);
 
   const [formdata, setFormdata] = useState({
     email: "",
@@ -24,6 +24,7 @@ const {loading, setLoading, navigate} = useContext(AuthContext);
       setLoading(true);
       const { data } = await AuthApi.post("/api/users/login", formdata);
       if (data.success) {
+        saveUser(data.user);
         toast.success(data.message);
         navigate("/");
       } else {
