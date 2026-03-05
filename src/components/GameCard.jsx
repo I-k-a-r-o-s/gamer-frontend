@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { AuthContext } from "../context/AuthContext";
 
 const GameCard = () => {
   const [favorite, setFavorite] = useState(false);
+  const { user } = useContext(AuthContext);
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <a href="#" className="hover-3d my-12 mx-2 cursor-pointer">
@@ -31,7 +33,8 @@ const GameCard = () => {
           title and actions parts
         </p>
         <div className="card-actions justify-end">  
-          <button
+          {user && (
+            <button
               className="btn btn-circle"
               onClick={() => setFavorite(!favorite)}
             >
@@ -40,7 +43,8 @@ const GameCard = () => {
               ) : (
                 <MdFavoriteBorder size={20} />
               )}
-            </button>      
+            </button>
+          )}      
         </div>
       </div>
     </div>
