@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { FiHome } from "react-icons/fi";
 import { MdOutlineFavorite } from "react-icons/md";
 import { Link } from "react-router";
-import { AuthContext } from "../context/AuthContext";
+import { GamerContext } from "../context/GamerContext";
 
 const Sidebar = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(GamerContext);
   const genres = ["action", "adventure", "open world", "fps"];
   return (
     <div className="drawer-side is-drawer-close:overflow-visible">

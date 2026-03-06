@@ -1,9 +1,0 @@
-import axios from "axios";
-
-const RawgApi = axios.create({
-  baseURL: import.meta.env.VITE_RAWG_BASE_URL,
-  params: {
-    key: import.meta.env.VITE_RAWG_KEY,
-  },
-});
-export default RawgApi;

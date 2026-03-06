@@ -1,21 +1,21 @@
 import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router";
-import { AuthContext } from "../context/AuthContext";
-import AuthApi from "../api/AuthApi";
+import { GamerContext } from "../context/GamerContext";
 
 const Login = () => {
-const {loading, setLoading, navigate, saveUser} = useContext(AuthContext);
+  const { AuthApi, loading, setLoading, navigate, saveUser } =
+    useContext(GamerContext);
 
   const [formdata, setFormdata] = useState({
     email: "",
     password: "",
   });
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(!formdata.email || !formdata.password){
+    if (!formdata.email || !formdata.password) {
       toast.error("Please fill all the fields");
       return;
     }
@@ -35,45 +35,58 @@ const {loading, setLoading, navigate, saveUser} = useContext(AuthContext);
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <form onSubmit={handleSubmit}>
-        <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-          <legend className="fieldset-legend">Login</legend>
+    <div className="hero h-[calc(100vh-4rem)]">
+      <div className="hero-content">
+        <form onSubmit={handleSubmit}>
+          <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+            <legend className="fieldset-legend">Login</legend>
 
-          <label className="label">Email</label>
-          <input 
-          type="email" 
-          className="input" 
-          placeholder="Email"
-          value={formdata.email}
-          onChange={(e) => setFormdata({...formdata, email: e.target.value})} />
+            <label className="label">Email</label>
+            <input
+              type="email"
+              className="input"
+              placeholder="Email"
+              value={formdata.email}
+              onChange={(e) =>
+                setFormdata({ ...formdata, email: e.target.value })
+              }
+            />
 
-          <label className="label">Password</label>
-          <input type="password" className="input" placeholder="Password" value={formdata.password} onChange={(e) => setFormdata({...formdata, password: e.target.value})} />
+            <label className="label">Password</label>
+            <input
+              type="password"
+              className="input"
+              placeholder="Password"
+              value={formdata.password}
+              onChange={(e) =>
+                setFormdata({ ...formdata, password: e.target.value })
+              }
+            />
 
-          <button className="btn btn-neutral mt-4" disabled={loading}>
-            {loading ? (
-              <span className="loading loading-spinner"></span>
-            ) : (
-              "Login"
-            )}
-          </button>
-          <div className="text-center pt-6 border-t border-base-300">
-            <p className="text-base-content/70">
-              Don't have an account?{" "}
-              <Link
-                to="/register"
-                className="link link-primary font-bold hover:link-secondary transition-colors"
-              >
-                Create one now!
-              </Link>
-            </p>
-          </div>
-        </fieldset>
-      </form>
+            <button className="btn btn-neutral mt-4" disabled={loading}>
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Login"
+              )}
+            </button>
+            <div className="text-center pt-6 border-t border-base-300">
+              <p className="text-base-content/70">
+                Don't have an account?{" "}
+                <Link
+                  to="/register"
+                  className="link link-primary font-bold hover:link-secondary transition-colors"
+                >
+                  Create one now!
+                </Link>
+              </p>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </div>
   );
 };

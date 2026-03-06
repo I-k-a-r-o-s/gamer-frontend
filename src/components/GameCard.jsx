@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 import { MdFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
-import { AuthContext } from "../context/AuthContext";
+import { GamerContext } from "../context/GamerContext";
 
 const GameCard = () => {
   const [favorite, setFavorite] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(GamerContext);
   return (
     <div className="card bg-base-100 w-96 shadow-sm">
       <a href="#" className="hover-3d my-12 mx-2 cursor-pointer">

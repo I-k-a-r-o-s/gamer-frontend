@@ -5,12 +5,12 @@ import {
 import ThemeSelector from "./ThemeSelector";
 import { useState, useContext } from "react";
 import { Link} from "react-router";
-import { AuthContext } from "../context/AuthContext";
+import { GamerContext } from "../context/GamerContext";
 import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
-  const { user, logout,location } = useContext(AuthContext);
+  const { user, logout,location } = useContext(GamerContext);
   return (
     <nav className="navbar w-full bg-base-300">
       <div className="navbar-start">
