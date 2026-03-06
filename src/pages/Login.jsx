@@ -38,7 +38,7 @@ const {loading, setLoading, navigate, saveUser} = useContext(AuthContext);
   }
 
   return (
-    <div>
+    <div className="flex justify-center items-center min-h-screen">
       <form onSubmit={handleSubmit}>
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
           <legend className="fieldset-legend">Login</legend>
