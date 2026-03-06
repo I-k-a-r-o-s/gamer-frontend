@@ -1,3 +1,5 @@
+import GameCard from "../components/GameCard";
+
 const Favorites = () => {
   const gamesNumbers = [1, 2, 3, 4, 5];
   return (
