@@ -1,12 +1,13 @@
 import { createContext, useState, useEffect } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import AuthApi from "../api/AuthApi";
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
@@ -25,7 +26,6 @@ const AuthContextProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(userData));
     } else {
       localStorage.removeItem("user");
-      return;
     }
     setUser(userData);
   };
@@ -34,7 +34,7 @@ const AuthContextProvider = ({ children }) => {
     try {
       const { data } = await AuthApi.post("/api/users/logout");
       if (data.success) {
-        setUser(null);
+        saveUser(null);
         toast.success(data.message);
         navigate("/login");
       }
@@ -44,7 +44,15 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const auth = { navigate, loading, setLoading, user, saveUser, logout };
+  const auth = {
+    navigate,
+    loading,
+    setLoading,
+    user,
+    saveUser,
+    logout,
+    location,
+  };
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
